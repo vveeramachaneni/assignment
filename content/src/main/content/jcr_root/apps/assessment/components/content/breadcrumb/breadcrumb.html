@@ -1,0 +1,19 @@
+<sly  data-sly-use.breadcrumb="${'apps.assessment.components.content.breadcrumb.Breadcrumb'}"></sly>
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"  data-sly-call="${clientLib.css @ categories='assessment.breadcrumb'}" />
+<sly data-sly-test.pageLinks="${breadcrumb.pageLinks}"></sly>
+<div class="cq-placeholder" data-sly-test.editMode="${(wcmmode.edit || wcmmode.design) && pageLinks.size == 0}">Please configure Breadcrumb</div>
+<div class="breadcrumb-section" data-sly-test="${pageLinks}">
+    <div class="container">
+        <ul class="breadcrumb" data-sly-list.page="${pageLinks}">
+            <li data-sly-attribute.class="${pageList.last ? 'active' : ''}">
+                <sly data-sly-test.pageTitle="${page.navigationTitle ? page.navigationTitle : page.title}"></sly>
+                <a data-sly-test="${!pageList.last}" href="${page.path}.html" data-sly-unwrap="${linkList.last}">
+                    ${pageTitle}
+                </a>
+                <sly data-sly-test="${pageList.last}">
+                    ${pageTitle}
+                </sly>
+            </li>
+        </ul>
+    </div>
+</div>
